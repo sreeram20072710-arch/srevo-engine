@@ -568,9 +568,19 @@ func initGenFiles(
 
 	// set the balances in the genesis state
 	var bankGenState banktypes.GenesisState
-	clientCtx.Codec.MustUnmarshalJSON(appGenState[banktypes.ModuleName], &bankGenState)
+	clientCtx.Codec.MustUnmarshalJSON(appGenState[banktypes.ModuleName], &bankGenS
 
-	bankGenState.DenomMetadata = append(bankGenState.DenomMetadata, evmnetwork.GenerateBankGenesisMetadata(evmtypes.DefaultEVMChainID)...)
+bankGenState.DenomMetadata = append(bankGenState.DenomMetadata, banktypes.Metadata{
+    Description: "Native SREVO coin metadata",
+    Base:        "asrevo",
+    DenomUnits: []*banktypes.DenomUnit{
+        {Denom: "asrevo", Exponent: 0},
+        {Denom: "srevo", Exponent: 18},
+    },
+    Name:    "SREVO",
+    Symbol:  "SREVO",
+    Display: "srevo",
+})
 
 	bankGenState.Balances = banktypes.SanitizeGenesisBalances(genBalances)
 	for _, bal := range bankGenState.Balances {
