@@ -135,7 +135,7 @@ func init() {
 	defaultNodeHome = evmconfig.MustGetDefaultNodeHome()
 }
 
-const appName = "evmd"
+const appName = "srevo".
 
 // defaultNodeHome default home directories for the application daemon
 var defaultNodeHome string
