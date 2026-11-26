@@ -50,7 +50,7 @@ func NewErc20GenesisState() *erc20types.GenesisState {
 func NewMintGenesisState() *minttypes.GenesisState {
 	mintGenState := minttypes.DefaultGenesisState()
 
-	mintGenState.Params.MintDenom = testconstants.ExampleAttoDenom
+	mintGenState.Params.MintDenom = "asrevo"
 	return mintGenState
 }
 
